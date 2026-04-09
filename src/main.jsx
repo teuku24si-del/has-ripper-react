@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import MainGuest from './Guest/MainGuest' // Jalur menuju file utama Guest Anda
+import './index.css' // Pastikan file CSS Tailwind Anda diimpor di sini
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <MainGuest />
+  </React.StrictMode>,
 )
