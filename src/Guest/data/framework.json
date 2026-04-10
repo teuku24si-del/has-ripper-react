@@ -25,6 +25,7 @@
     "id": 2,
     "kategori": "hotel",
     "nama_item": "Grand Hyatt Nusa Dua",
+    "gambar": "/img/Grand.png",
     "harga": 2800000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -41,6 +42,11 @@
       "bisa_refund": true,
       "batas_waktu": "24 jam sebelum check-in",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.8,
+      "total_ulasan": 2100,
+      "label": "Sangat Baik"
     }
   },
   {
@@ -69,6 +75,7 @@
     "id": 4,
     "kategori": "hotel",
     "nama_item": "The Gaia Hotel Bandung",
+    "gambar": "/img/Gaia.jpg",
     "harga": 1950000,
     "status_ketersediaan": false,
     "lokasi_fisik": {
@@ -85,6 +92,11 @@
       "bisa_refund": false,
       "batas_waktu": "-",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.7,
+      "total_ulasan": 950,
+      "label": "Nyaman"
     }
   },
   {
@@ -113,6 +125,7 @@
     "id": 6,
     "kategori": "hotel",
     "nama_item": "Pullman Jakarta Central Park",
+    "gambar": "/img/Pullman.jpg",
     "harga": 2100000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -129,6 +142,11 @@
       "bisa_refund": true,
       "batas_waktu": "48 jam sebelum",
       "biaya_admin": 50000
+    },
+    "ulasan_pengguna": {
+      "skor": 4.6,
+      "total_ulasan": 1540,
+      "label": "Strategis"
     }
   },
   {
@@ -157,6 +175,7 @@
     "id": 8,
     "kategori": "hotel",
     "nama_item": "Tentrem Hotel Yogyakarta",
+    "gambar": "/img/Tentrem.jpg",
     "harga": 1600000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -173,6 +192,11 @@
       "bisa_refund": true,
       "batas_waktu": "12 jam sebelum",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.9,
+      "total_ulasan": 3200,
+      "label": "Mewah"
     }
   },
   {
@@ -201,6 +225,7 @@
     "id": 10,
     "kategori": "hotel",
     "nama_item": "JW Marriott Medan",
+    "gambar": "/img/Jw.jpg",
     "harga": 1350000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -217,6 +242,11 @@
       "bisa_refund": true,
       "batas_waktu": "24 jam sebelum",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.8,
+      "total_ulasan": 1100,
+      "label": "Elegan"
     }
   },
   {
@@ -245,6 +275,7 @@
     "id": 12,
     "kategori": "hotel",
     "nama_item": "Alila Villas Uluwatu",
+    "gambar": "/img/Alila.jpg",
     "harga": 12000000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -261,6 +292,11 @@
       "bisa_refund": false,
       "batas_waktu": "-",
       "biaya_admin": 1000000
+    },
+    "ulasan_pengguna": {
+      "skor": 5.0,
+      "total_ulasan": 500,
+      "label": "Eksklusif"
     }
   },
   {
@@ -289,6 +325,7 @@
     "id": 14,
     "kategori": "hotel",
     "nama_item": "Hotel Indonesia Kempinski",
+    "gambar": "/img/Kempinski.jpg",
     "harga": 3200000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -305,6 +342,11 @@
       "bisa_refund": true,
       "batas_waktu": "24 jam sebelum",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.9,
+      "total_ulasan": 4200,
+      "label": "Ikonik"
     }
   },
   {
@@ -333,6 +375,7 @@
     "id": 16,
     "kategori": "hotel",
     "nama_item": "Plataran Borobudur Resort",
+    "gambar": "/img/Plataran.jpg",
     "harga": 4500000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -349,6 +392,11 @@
       "bisa_refund": true,
       "batas_waktu": "7 hari sebelum",
       "biaya_admin": 250000
+    },
+    "ulasan_pengguna": {
+      "skor": 4.9,
+      "total_ulasan": 800,
+      "label": "Budaya"
     }
   },
   {
@@ -377,6 +425,7 @@
     "id": 18,
     "kategori": "hotel",
     "nama_item": "Padma Resort Ubud",
+    "gambar": "/img/Padma.jpg",
     "harga": 3800000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -393,6 +442,11 @@
       "bisa_refund": true,
       "batas_waktu": "3 hari sebelum",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.9,
+      "total_ulasan": 1800,
+      "label": "Pemandangan"
     }
   },
   {
@@ -421,6 +475,7 @@
     "id": 20,
     "kategori": "hotel",
     "nama_item": "The Ritz-Carlton Jakarta",
+    "gambar": "/img/Ritz.jpg",
     "harga": 3500000,
     "status_ketersediaan": true,
     "lokasi_fisik": {
@@ -437,6 +492,11 @@
       "bisa_refund": true,
       "batas_waktu": "24 jam sebelum",
       "biaya_admin": 0
+    },
+    "ulasan_pengguna": {
+      "skor": 4.8,
+      "total_ulasan": 2400,
+      "label": "Prestisius"
     }
   }
 ]
