@@ -181,6 +181,22 @@
     right: 0;
     border-right-color: var(--border);
   }
+
+  /* Mendaftarkan Font Inter Lokal */
+@font-face {
+  font-family: 'Inter';
+  src: url('/Fonts/Inter_28pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Mendaftarkan Font IBM Plex Serif Lokal */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  src: url('/Fonts/IBMPlexSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 }
 
 
