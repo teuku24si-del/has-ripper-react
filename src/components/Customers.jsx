@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // Memakai library icon yang sudah ada di project Anda
 import { FiSearch, FiFilter, FiUser, FiPhone, FiMail } from "react-icons/fi";
 // Mengambil data 30 customer dari folder data yang sudah dibuat
-import customerData from '../data/Customers.json';
+import customerData from '../data/customers.json';
 
 const Customers = () => {
   const [searchTerm, setSearchTerm] = useState("");
