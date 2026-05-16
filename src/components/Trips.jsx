@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // <--- Wajib di-import
 import { FiSearch, FiMapPin, FiCalendar, FiDollarSign, FiUsers, FiTag } from "react-icons/fi";
-import tripData from '../data/trips.json';
+import tripData from '../data/Trips.json';
 
 const Trips = () => {
   const navigate = useNavigate(); // 2. INISIALISASI HOOK NAVIGASI DI SINI

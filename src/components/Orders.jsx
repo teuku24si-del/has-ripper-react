@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // Menggunakan icon dari react-icons yang sudah terinstall di project Anda
 import { FiSearch, FiEye, FiCheckCircle, FiClock, FiXCircle } from "react-icons/fi";
 // Mengimpor 30 data transaksi dari folder data
-import orderData from '../data/orders.json';
+import orderData from '../data/Orders.json';
 
 const Orders = () => {
   const [searchTerm, setSearchTerm] = useState("");

@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { FiArrowLeft, FiMapPin, FiCalendar, FiDollarSign, FiUsers, FiTag, FiClock } from "react-icons/fi";
 
 // Import data master json yang sudah Anda miliki di folder data
-import tripData from '../data/trips.json';
-import itineraryData from '../data/itineraries.json';
+import tripData from '../data/Trips.json';
+import itineraryData from '../data/Itineraries.json';
 
 const TripDetail = () => {
   // Mengambil parameter ID rute secara dinamis dari URL (contoh: /admin/trips/TRP-001)
