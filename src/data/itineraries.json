@@ -1,0 +1,40 @@
+{
+  "TRP-001": [
+    { "day": 1, "title": "Arrival & Welcome Dinner", "activity": "Penjemputan di Bandara Ngurah Rai, check-in resort di Ubud, dan makan malam sambutan di Puri Saren Agung." },
+    { "day": 2, "title": "Ubud Cultural & Nature Tour", "activity": "Mengunjungi Tegallalang Rice Terrace, Monkey Forest, dan menyaksikan pertunjukan Tari Kecak tradisional." },
+    { "day": 3, "title": "Souvenir Hunting & Departure", "activity": "Berbelanja oleh-oleh di Pasar Seni Ubud, relaksasi spa, dan transfer kembali ke bandara." }
+  ],
+  "TRP-002": [
+    { "day": 1, "title": "Tokyo Neon Lights", "activity": "Tiba di Haneda/Narita, check-in hotel di Shinjuku, dan menikmati pemandangan malam di Shibuya Crossing." },
+    { "day": 2, "title": "Modern vs Traditional Tokyo", "activity": "Eksplorasi Kuil Senso-ji di Asakusa pada pagi hari, dilanjutkan ke Harajuku dan Akihabara pada sore hari." },
+    { "day": 3, "title": "TeamLabs & Odaiba District", "activity": "Mengunjungi pameran digital TeamLab Planets, makan siang di Odaiba, dan berbelanja di Ginza." },
+    { "day": 4, "title": "Day Trip to Mount Fuji", "activity": "Perjalanan menggunakan Shinkansen menuju Danau Kawaguchiko untuk menikmati pemandangan Gunung Fuji." },
+    { "day": 5, "title": "Departure Preparation", "activity": "Acara bebas di Meiji Shrine dan transfer menuju bandara untuk penerbangan kembali." }
+  ],
+  "TRP-003": [
+    { "day": 1, "title": "Bonjour Paris & Seine Cruise", "activity": "Tiba di Paris, check-in hotel butik di Montmartre, dan menikmati kapal pesiar malam di Sungai Seine." },
+    { "day": 2, "title": "Louvre & Eiffel Tower Experience", "activity": "Akses VIP ke Museum Louvre pada pagi hari, dilanjutkan dengan makan siang di atas menara Eiffel." },
+    { "day": 3, "title": "Palace of Versailles Day Tour", "activity": "Eksplorasi istana bersejarah Versailles dan berjalan-jalan santai di taman indahnya." },
+    { "day": 4, "title": "Arc de Triomphe & Champs-Élysées", "activity": "Berbelanja di kawasan mode Champs-Élysées dan menikmati makan malam romantis ala Prancis." },
+    { "day": 5, "title": "Charming Cafes & Departure", "activity": "Menikmati kopi dan croissant di Cafe de Flore, kunjungan singkat ke Notre Dame, menuju bandara." }
+  ],
+  "TRP-004": [
+    { "day": 1, "title": "Old Delhi Heritage Walk", "activity": "Tiba di Delhi, check-in hotel, dan mengunjungi Red Fort serta Masjid Jama menggunakan rickshaw." },
+    { "day": 2, "title": "New Delhi Landmarks", "activity": "Mengunjungi India Gate, Qutub Minar, Lotus Temple, dan mencicipi kuliner khas di Connaught Place." },
+    { "day": 3, "title": "Taj Mahal Day Trip", "activity": "Perjalanan subuh menuju Agra menggunakan kereta cepat untuk menyaksikan matahari terbit di Taj Mahal." },
+    { "day": 4, "title": "Vikas Puri Shopping & Departure", "activity": "Berbelanja kain tradisional di pasar lokal Vikas Puri sebelum transfer ke bandara Internasional Indira Gandhi." }
+  ],
+  "TRP-005": [
+    { "day": 1, "title": "Northern Lights Catching", "activity": "Mendarat di Keflavik, relaksasi di pemandian air panas Blue Lagoon, dan berburu Aurora Borealis pada malam hari." },
+    { "day": 2, "title": "Golden Circle Expedition", "activity": "Menjelajahi Taman Nasional Þingvellir, area geotermal Geysir, dan air terjun Gullfoss yang megah." },
+    { "day": 3, "title": "South Coast & Black Sand Beach", "activity": "Mengunjungi air terjun Seljalandsfoss dan berjalan di sepanjang pantai pasir hitam Reynisfjara." },
+    { "day": 4, "title": "Glacier Hiking Adventure", "activity": "Petualangan mendaki es dengan pemandu profesional di gletser Vatnajökull." },
+    { "day": 5, "title": "Ice Cave Exploration", "activity": "Memasuki gua es alami berwarna biru kristal di bawah kawasan gletser." },
+    { "day": 6, "title": "Reykjavik Capital & Departure", "activity": "City tour singkat di gereja Hallgrímskirkja, berbelanja cinderamata, dan penerbangan pulang." }
+  ],
+  "default": [
+    { "day": 1, "title": "Arrival & Briefing Overview", "activity": "Penjemputan peserta di titik kumpul, check-in akomodasi hotel, dan makan malam bersama orientasi program." },
+    { "day": 2, "title": "Main Destination Exploration", "activity": "Kegiatan dokumentasi inti mengelilingi landmark populer dan eksplorasi budaya lokal setempat." },
+    { "day": 3, "title": "Free Program & Departure", "activity": "Waktu santai mandiri untuk peserta, berburu oleh-oleh, checklist bagasi, dan transfer kepulangan." }
+  ]
+}

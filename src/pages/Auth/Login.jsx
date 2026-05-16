@@ -79,7 +79,7 @@ const Login = () => {
         <img 
           src={logoWanderly} 
           alt="Wanderly Logo" 
-          className="h-28 sm:h-32 w-auto object-contain drop-shadow-md"
+          className="h-50 sm:h-50 w-auto object-contain drop-shadow-md"
         />
       </div>
 
