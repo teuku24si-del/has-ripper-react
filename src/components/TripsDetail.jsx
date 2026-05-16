@@ -4,7 +4,7 @@ import { FiArrowLeft, FiMapPin, FiCalendar, FiDollarSign, FiUsers, FiTag, FiCloc
 
 // Import data master json yang sudah Anda miliki di folder data
 import tripData from '../data/Trips.json';
-import itineraryData from '../data/Itineraries.json';
+import itineraryData from '../data/itineraries.json';
 
 const TripDetail = () => {
   // Mengambil parameter ID rute secara dinamis dari URL (contoh: /admin/trips/TRP-001)
