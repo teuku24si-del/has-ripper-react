@@ -3,6 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BsFillExclamationDiamondFill } from "react-icons/bs"; 
 import { ImSpinner2 } from "react-icons/im"; 
+// Import icon untuk melengkapi tampilan input sesuai gambar acuan
+import { FiUser, FiLock } from "react-icons/fi"; 
+//IMPORT FILE LOGO 
+import logoWanderly from '../../assets/logo-wanderly.png';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,7 +42,9 @@ const Login = () => {
       
       if (response.status === 200) {
         localStorage.setItem('token', response.data.accessToken);
-        navigate('/home'); 
+        
+        // JALUR DIUBAH: Mengarah ke rute dashboard admin yang valid di App.jsx
+        navigate('/admin/dashboard'); 
       }
     } catch (err) {
       if (err.response) {
@@ -52,109 +58,105 @@ const Login = () => {
   };
 
   const errorInfo = error ? (
-    <div className="bg-red-50 border border-red-200 mb-5 p-4 text-sm text-red-600 rounded-lg flex items-center">
-      <BsFillExclamationDiamondFill className="text-red-500 me-2 text-lg shrink-0" />
+    <div className="w-full bg-red-500/20 border border-red-500/30 mb-5 p-4 text-sm text-red-200 rounded-lg flex items-center backdrop-blur-sm">
+      <BsFillExclamationDiamondFill className="text-red-300 me-2 text-lg shrink-0" />
       {error}
     </div>
   ) : null;
 
   const loadingInfo = loading ? (
-    <div className="bg-blue-50 border border-blue-200 mb-5 p-4 text-sm text-blue-600 rounded-lg flex items-center">
-      <ImSpinner2 className="me-2 animate-spin text-blue-500 shrink-0" />
+    <div className="w-full bg-blue-500/20 border border-blue-400/30 mb-5 p-4 text-sm text-blue-200 rounded-lg flex items-center backdrop-blur-sm">
+      <ImSpinner2 className="me-2 animate-spin text-blue-300 shrink-0" />
       Mohon Tunggu...
     </div>
   ) : null;
 
   return (
-    // Membungkus seluruh div utama dengan Inter sebagai standar
-    <div className="font-['Inter',sans-serif]">
+    <div className="w-full flex flex-col items-center">
       
-      {/* 1. Judul Sign in menggunakan font Inter */}
-      <h1 className="text-[30px] font-bold text-gray-900 mb-2 font-['Inter',sans-serif]">
-        Sign in 
-      </h1>
+      {/* 2. MENGGANTI TEKS WANDERLY DENGAN ELEMEN LOGO GAMBAR */}
+      <div className="mb-10 flex justify-center items-center">
+        <img 
+          src={logoWanderly} 
+          alt="Wanderly Logo" 
+          className="h-28 sm:h-32 w-auto object-contain drop-shadow-md"
+        />
+      </div>
 
       {errorInfo}
       {loadingInfo}
 
-      <form onSubmit={handleLogin} className="space-y-4">
+      <form onSubmit={handleLogin} className="w-full space-y-5">
         
-        {/* Input Username / Email */}
-        <div>
+        {/* Input Username (Montserrat Light - Weight 300) */}
+        <div className="relative flex items-center">
+          <span className="absolute left-4 text-white/70 text-lg">
+            <FiUser />
+          </span>
           <input 
             type="text" 
             name="email" 
             value={formData.email}
             onChange={handleChange}
             disabled={loading}
-            className={`w-full px-4 py-3.5 rounded-lg border bg-white text-gray-900 outline-none transition-all placeholder:text-gray-500 font-['Inter',sans-serif] ${
+            className={`w-full pl-12 pr-4 py-3.5 rounded-lg border bg-transparent text-white outline-none transition-all placeholder:text-white/60 tracking-wide font-['Montserrat'] font-light text-sm uppercase ${
               error 
-                ? 'border-red-400 focus:ring-1 focus:ring-red-500' 
-                : 'border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                ? 'border-red-400 focus:ring-1 focus:ring-red-400' 
+                : 'border-white/40 focus:border-white focus:ring-1 focus:ring-white'
             }`}
-            placeholder="get@ziontutorial.com" 
+            placeholder="USERNAME" 
             required
           />
         </div>
 
-        {/* 2. Input Kata Sandi menggunakan font Inter */}
-        <div>
+        {/* Input Password (Montserrat Light - Weight 300) */}
+        <div className="relative flex items-center">
+          <span className="absolute left-4 text-white/70 text-lg">
+            <FiLock />
+          </span>
           <input 
             type="password" 
             name="password" 
             value={formData.password}
             onChange={handleChange}
             disabled={loading}
-            className={`w-full px-4 py-3.5 rounded-lg border bg-white text-gray-900 outline-none transition-all placeholder:text-gray-500 font-['Inter',sans-serif] ${
+            className={`w-full pl-12 pr-4 py-3.5 rounded-lg border bg-transparent text-white outline-none transition-all placeholder:text-white/60 tracking-wide font-['Montserrat'] font-light text-sm uppercase ${
               error 
-                ? 'border-red-400 focus:ring-1 focus:ring-red-500' 
-                : 'border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                ? 'border-red-400 focus:ring-1 focus:ring-red-400' 
+                : 'border-white/40 focus:border-white focus:ring-1 focus:ring-white'
             }`} 
-            placeholder="Password" 
+            placeholder="PASSWORD" 
             required
           />
         </div>
 
-        <div className="text-right">
-          <Link to="/forgot-password" virtual="true" className="text-sm text-blue-600 hover:text-blue-500 font-medium font-['Inter',sans-serif]">
-            Lupa kata sandi?
-          </Link>
-        </div>
-
-        {/* 3. Or continue with menggunakan font Inter */}
-        <div className="flex items-center pt-2 pb-2">
-          <span className="text-sm text-gray-500 mr-4 font-['Inter',sans-serif]">Or continue with</span>
-          <div className="flex-grow border-t border-gray-100"></div>
-        </div>
-
-        <div className="mb-6">
+        {/* Tombol Submit Utama / LOGIN (Montserrat SemiBold - Weight 600) */}
+        <div className="pt-2">
           <button 
-            type="button" 
-            className="w-full flex justify-center items-center py-3.5 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all"
+            type="submit"
+            disabled={loading}
+            className={`w-full py-4 rounded-lg bg-white text-blue-900 tracking-widest font-['Montserrat'] font-semibold text-sm uppercase shadow-lg shadow-blue-950/20 transition-all active:scale-[0.99] ${
+              loading ? 'bg-white/80 cursor-not-allowed' : 'hover:bg-blue-50'
+            }`}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22.56 12.25C22.56 11.47 22.49 10.72 22.36 10H12V14.26H17.92C17.66 15.63 16.88 16.78 15.68 17.54V20.3H19.25C21.34 18.37 22.56 15.57 22.56 12.25Z" fill="#4285F4"/>
-              <path d="M12 23C14.97 23 17.46 22.02 19.25 20.3L15.68 17.54C14.7 18.2 13.45 18.59 12 18.59C9.19 18.59 6.81 16.7 5.96 14.16H2.26V17.03C4.05 20.59 7.72 23 12 23Z" fill="#34A853"/>
-              <path d="M5.96 14.16C5.74 13.5 5.62 12.77 5.62 12C5.62 11.23 5.74 10.5 5.96 9.84V6.97H2.26C1.52 8.44 1.1 10.15 1.1 12C1.1 13.85 1.52 15.56 2.26 17.03L5.96 14.16Z" fill="#FBBC05"/>
-              <path d="M12 5.41C13.62 5.41 15.07 5.97 16.21 7.06L19.34 3.93C17.45 2.17 14.97 1.1 12 1.1C7.72 1.1 4.05 3.41 2.26 6.97L5.96 9.84C6.81 7.3 9.19 5.41 12 5.41Z" fill="#EA4335"/>
-            </svg>
+            {loading ? <ImSpinner2 className="animate-spin text-xl mx-auto text-blue-900" /> : "LOGIN"}
           </button>
         </div>
 
-        {/* 4. Tombol Submit Utama menggunakan font IBM Plex Serif */}
-        <button 
-          type="submit"
-          disabled={loading}
-          className={`w-full font-medium py-3.5 rounded-lg transition-all flex justify-center items-center text-white font-['IBM_Plex_Serif',serif] ${
-            loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-          }`}
-        >
-          {loading ? <ImSpinner2 className="animate-spin text-xl" /> : "Log in"}
-        </button>
+        {/* Forgot Password (Montserrat Medium - Weight 500) */}
+        <div className="text-center pt-2">
+          <Link 
+            to="/forgot-password" 
+            className="text-xs text-white/80 hover:text-white transition-colors font-['Montserrat'] font-medium tracking-wide"
+          >
+            Forgot password?
+          </Link>
+        </div>
       </form>
 
-      <p className="mt-8 text-[11px] text-gray-500 text-center uppercase tracking-widest font-['Inter',sans-serif]">
-        Gunakan <span className="text-blue-600 font-bold">emilys</span> & <span className="text-blue-600 font-bold">emilyspass</span>
+      {/* Info Akun Demo disesuaikan agar kontras di background biru */}
+      <p className="mt-12 text-[10px] text-white/50 text-center uppercase tracking-widest font-['Montserrat'] font-light">
+        Gunakan <span className="text-white font-medium underline decoration-white/40">emilys</span> & <span className="text-white font-medium underline decoration-white/40">emilyspass</span>
       </p>
     </div>
   );
