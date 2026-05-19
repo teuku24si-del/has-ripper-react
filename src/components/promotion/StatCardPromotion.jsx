@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../Card";
+import Card from "./Card";
 
 export default function StatCardPromotion({ title, value, icon, trend, trendColor }) {
   return (

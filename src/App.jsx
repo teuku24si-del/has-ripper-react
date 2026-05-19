@@ -22,6 +22,9 @@ const Orders = lazy(() => import('./components/Orders'));
 const Trips = lazy(() => import('./components/Trips'));
 const TripsDetail = lazy(() => import('./components/TripsDetail'));
 
+// --- TAMBAHKAN LAZY IMPORT PROMOTION DI SINI ---
+const Promotion = lazy(() => import('./pages/Promotion'));
+
 // Komponen Loading Sementara (Fallback) saat halaman sedang diunduh browser
 const PageLoader = () => (
   <div className="w-full min-h-screen flex flex-col items-center justify-center bg-[#F4F7FE] font-['Plus_Jakarta_Sans',sans-serif]">
@@ -36,7 +39,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* Wajib membungkus Routes dengan Suspense dan memberikan properti fallback.
-        PageLoader akan otomatis muncul selama jeda sepersekian detik proses download file halaman.
+          PageLoader akan otomatis muncul selama jeda sepersekian detik proses download file halaman.
       */}
       <Suspense fallback={<PageLoader />}>
         <Routes>
@@ -67,6 +70,9 @@ function App() {
 
             {/* Rute Detail Dinamis Per Trips Package */}
             <Route path="trips/:id" element={<TripsDetail />} />
+
+            {/* --- RUTE KONTEN BARU PROMOTIONS (SINKRON DENGAN SIDEBAR) --- */}
+            <Route path="promotions" element={<Promotion />} />
           </Route>
 
           {/* ==================== REDIRECTION FALLBACK ==================== */}

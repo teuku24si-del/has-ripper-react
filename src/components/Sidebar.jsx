@@ -1,6 +1,6 @@
 // src/components/Sidebar.jsx
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { FiChevronDown, FiChevronUp, FiLogOut } from 'react-icons/fi'; // Import icon tambahan
 import logoSidebar from '../assets/logo-sidebar.png';
 
@@ -47,6 +47,16 @@ const Sidebar = () => {
       ), 
       label: 'Customers', 
       path: '/admin/customers'
+    },
+    
+    { 
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+        </svg>
+      ), 
+      label: 'Promotions', 
+      path: '/admin/promotions'
     },
   ];
 
@@ -118,7 +128,7 @@ const Sidebar = () => {
           {isSettingsOpen ? <FiChevronUp size={16} /> : <FiChevronDown size={16} />}
         </button>
 
-        {/* AREA MENU DROPDOWN SETTINGS (Akan tampil jika isSettingsOpen bernilai true) */}
+        {/* AREA MENU DROPDOWN SETTINGS */}
         {isSettingsOpen && (
           <div className="pl-9 pr-2 py-1 space-y-1 animate-in slide-in-from-top-2 duration-200">
             <button 
