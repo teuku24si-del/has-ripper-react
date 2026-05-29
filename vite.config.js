@@ -1,3 +1,5 @@
+// vite.config.js
+import path from 'path' // <-- Tetap pertahankan import ini untuk modul alias
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -6,6 +8,11 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    tailwindcss(), // Tailwind v4 tetap aktif di sini
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"), // <-- Modul path alias untuk shadcn/ui tetap aman di sini
+    },
+  },
 })

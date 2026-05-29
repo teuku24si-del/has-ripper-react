@@ -1,7 +1,8 @@
 // src/App.jsx
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ImSpinner2 } from "react-icons/im"; // Menggunakan spinner yang sudah ada di project Anda
+import { ImSpinner2 } from "react-icons/im"; 
+import { Toaster } from "@/components/ui/sonner"; // Import provider Sonner untuk notifikasi global
 
 // ==================== LAZY LOADING IMPORTS ====================
 // Komponen dipisahkan menjadi chunk-chunk kecil dan di-load secara dinamis
@@ -21,9 +22,10 @@ const Customers = lazy(() => import('./components/Customers'));
 const Orders = lazy(() => import('./components/Orders'));
 const Trips = lazy(() => import('./components/Trips'));
 const TripsDetail = lazy(() => import('./components/TripsDetail'));
-
-// --- TAMBAHKAN LAZY IMPORT PROMOTION DI SINI ---
 const Promotion = lazy(() => import('./pages/Promotion'));
+
+// --- LAZY IMPORT KONTEN BARU ACCOUNT SETTINGS ---
+const AccountSettings = lazy(() => import('./pages/AccountSettings'));
 
 // Komponen Loading Sementara (Fallback) saat halaman sedang diunduh browser
 const PageLoader = () => (
@@ -38,9 +40,7 @@ const PageLoader = () => (
 function App() {
   return (
     <BrowserRouter>
-      {/* Wajib membungkus Routes dengan Suspense dan memberikan properti fallback.
-          PageLoader akan otomatis muncul selama jeda sepersekian detik proses download file halaman.
-      */}
+      {/* Wajib membungkus Routes dengan Suspense dan memberikan properti fallback. */}
       <Suspense fallback={<PageLoader />}>
         <Routes>
           
@@ -71,8 +71,11 @@ function App() {
             {/* Rute Detail Dinamis Per Trips Package */}
             <Route path="trips/:id" element={<TripsDetail />} />
 
-            {/* --- RUTE KONTEN BARU PROMOTIONS (SINKRON DENGAN SIDEBAR) --- */}
+            {/* Rute Konten Baru Promotions */}
             <Route path="promotions" element={<Promotion />} />
+
+            {/* --- RUTE KONTEN BARU ACCOUNT SETTINGS (SINKRON DENGAN SIDEBAR) --- */}
+            <Route path="account-settings" element={<AccountSettings />} />
           </Route>
 
           {/* ==================== REDIRECTION FALLBACK ==================== */}
@@ -81,6 +84,9 @@ function App() {
 
         </Routes>
       </Suspense>
+
+      {/* Komponen Toaster diletakkan di sini agar bisa diakses dari halaman mana saja */}
+      <Toaster position="top-right" richColors />
     </BrowserRouter>
   );
 }
