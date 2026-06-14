@@ -24,8 +24,9 @@ const Trips = lazy(() => import('./components/Trips'));
 const TripsDetail = lazy(() => import('./components/TripsDetail'));
 const Promotion = lazy(() => import('./pages/Promotion'));
 
-// --- LAZY IMPORT KONTEN BARU ACCOUNT SETTINGS ---
+// --- LAZY IMPORT KONTEN BARU USER & ACCOUNT SETTINGS ---
 const AccountSettings = lazy(() => import('./pages/AccountSettings'));
+const UserPage = lazy(() => import('./pages/User')); // Menambahkan import untuk halaman User
 
 // Komponen Loading Sementara (Fallback) saat halaman sedang diunduh browser
 const PageLoader = () => (
@@ -73,6 +74,9 @@ function App() {
 
             {/* Rute Konten Baru Promotions */}
             <Route path="promotions" element={<Promotion />} />
+
+            {/* --- RUTE KONTEN BARU MANAGEMENT USER --- */}
+            <Route path="user" element={<UserPage />} />
 
             {/* --- RUTE KONTEN BARU ACCOUNT SETTINGS (SINKRON DENGAN SIDEBAR) --- */}
             <Route path="account-settings" element={<AccountSettings />} />

@@ -1,7 +1,7 @@
-// src/components/Sidebar.jsx
+
 import React, { useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { FiChevronDown, FiChevronUp, FiLogOut, FiUser } from 'react-icons/fi'; // Menambahkan FiUser
+import { FiChevronDown, FiChevronUp, FiLogOut, FiUser } from 'react-icons/fi';
 import logoSidebar from '../assets/logo-sidebar.png';
 
 const Sidebar = () => {
@@ -56,6 +56,11 @@ const Sidebar = () => {
       ), 
       label: 'Promotions', 
       path: '/admin/promotions'
+    },
+    { 
+      icon: <FiUser className="w-5 h-5" />, // Menggunakan komponen FiUser yang sudah diimport
+      label: 'User', 
+      path: '/admin/user'
     },
   ];
 
@@ -130,7 +135,7 @@ const Sidebar = () => {
         {/* AREA MENU DROPDOWN SETTINGS */}
         {(isSettingsOpen || location.pathname === '/admin/account-settings') && (
           <div className="pl-9 pr-2 py-1 space-y-1.5 animate-in slide-in-from-top-2 duration-200">
-            {/* OPSI BARU: ACCOUNT SETTINGS */}
+            {/* ACCOUNT SETTINGS */}
             <Link 
               to="/admin/account-settings"
               className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-bold transition-all border border-transparent shadow-sm ${

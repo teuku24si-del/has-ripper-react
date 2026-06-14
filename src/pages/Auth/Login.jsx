@@ -1,11 +1,10 @@
+// src/pages/Auth/Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; // PERBAIKAN: Dialihkan ke library axios yang benar
 import { BsFillExclamationDiamondFill } from "react-icons/bs"; 
 import { ImSpinner2 } from "react-icons/im"; 
-// Import icon untuk melengkapi tampilan input sesuai gambar acuan
 import { FiUser, FiLock } from "react-icons/fi"; 
-//IMPORT FILE LOGO 
 import logoWanderly from '../../assets/logo-wanderly.png';
 
 const Login = () => {
@@ -15,7 +14,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
-    email: '', 
+    email: '', // Berfungsi sebagai input email login
     password: ''
   });
 
@@ -32,23 +31,41 @@ const Login = () => {
     setLoading(true);
     setError("");
     
+    // Kredensial Supabase Anda
+    const API_URL = "https://mxakqvcstxgyobxzrodw.supabase.co/rest/v1/User";
+    const API_KEY = "sb_publishable_T-3OWnAwnCCVK09Sp_5NzQ_zZji8bib";
+
     try {
-      const response = await axios.post('https://dummyjson.com/user/login', {
-        username: formData.email, 
-        password: formData.password
-      }, {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      // Menembak data dengan mencocokkan email dan password secara bersamaan
+      const response = await axios.get(
+        `${API_URL}?email=eq.${formData.email}&password=eq.${formData.password}`, 
+        {
+          headers: { 
+            "apikey": API_KEY,
+            "Authorization": `Bearer ${API_KEY}`,
+            "Content-Type": "application/json" 
+          }
+        }
+      );
       
+      // Jika respons sukses dan data ditemukan (array tidak kosong)
       if (response.status === 200) {
-        localStorage.setItem('token', response.data.accessToken);
-        
-        // JALUR DIUBAH: Mengarah ke rute dashboard admin yang valid di App.jsx
-        navigate('/admin/dashboard'); 
+        if (response.data.length > 0) {
+          const loggedInUser = response.data[0];
+          
+          // Menyimpan token dummy atau ID admin yang berhasil login ke localStorage
+          localStorage.setItem('token', `session_admin_${loggedInUser.id}`);
+          
+          // Melempar masuk admin ke dalam dashboard utama
+          navigate('/admin/dashboard'); 
+        } else {
+          // Jika data di database mengembalikan array kosong [], berarti akun salah
+          setError("Email atau Password yang Anda masukkan salah.");
+        }
       }
     } catch (err) {
       if (err.response) {
-        setError(err.response.data.message || "Terjadi kesalahan pada server");
+        setError(err.response.data.message || "Terjadi kesalahan koneksi database.");
       } else {
         setError(err.message || "Koneksi gagal");
       }
@@ -67,14 +84,14 @@ const Login = () => {
   const loadingInfo = loading ? (
     <div className="w-full bg-blue-500/20 border border-blue-400/30 mb-5 p-4 text-sm text-blue-200 rounded-lg flex items-center backdrop-blur-sm">
       <ImSpinner2 className="me-2 animate-spin text-blue-300 shrink-0" />
-      Mohon Tunggu...
+      Memverifikasi Akun...
     </div>
   ) : null;
 
   return (
     <div className="w-full flex flex-col items-center">
       
-      {/* 2. MENGGANTI TEKS WANDERLY DENGAN ELEMEN LOGO GAMBAR */}
+      {/* Logo Gambar */}
       <div className="mb-10 flex justify-center items-center">
         <img 
           src={logoWanderly} 
@@ -88,28 +105,28 @@ const Login = () => {
 
       <form onSubmit={handleLogin} className="w-full space-y-5">
         
-        {/* Input Username (Montserrat Light - Weight 300) */}
+        {/* Input Email / Username */}
         <div className="relative flex items-center">
           <span className="absolute left-4 text-white/70 text-lg">
             <FiUser />
           </span>
           <input 
-            type="text" 
+            type="email" 
             name="email" 
             value={formData.email}
             onChange={handleChange}
             disabled={loading}
-            className={`w-full pl-12 pr-4 py-3.5 rounded-lg border bg-transparent text-white outline-none transition-all placeholder:text-white/60 tracking-wide font-['Montserrat'] font-light text-sm uppercase ${
+            className={`w-full pl-12 pr-4 py-3.5 rounded-lg border bg-transparent text-white outline-none transition-all placeholder:text-white/60 tracking-wide font-['Montserrat'] font-light text-sm ${
               error 
                 ? 'border-red-400 focus:ring-1 focus:ring-red-400' 
                 : 'border-white/40 focus:border-white focus:ring-1 focus:ring-white'
             }`}
-            placeholder="USERNAME" 
+            placeholder="EMAIL ADDRESS" 
             required
           />
         </div>
 
-        {/* Input Password (Montserrat Light - Weight 300) */}
+        {/* Input Password */}
         <div className="relative flex items-center">
           <span className="absolute left-4 text-white/70 text-lg">
             <FiLock />
@@ -120,7 +137,7 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
             disabled={loading}
-            className={`w-full pl-12 pr-4 py-3.5 rounded-lg border bg-transparent text-white outline-none transition-all placeholder:text-white/60 tracking-wide font-['Montserrat'] font-light text-sm uppercase ${
+            className={`w-full pl-12 pr-4 py-3.5 rounded-lg border bg-transparent text-white outline-none transition-all placeholder:text-white/60 tracking-wide font-['Montserrat'] font-light text-sm ${
               error 
                 ? 'border-red-400 focus:ring-1 focus:ring-red-400' 
                 : 'border-white/40 focus:border-white focus:ring-1 focus:ring-white'
@@ -130,7 +147,7 @@ const Login = () => {
           />
         </div>
 
-        {/* Tombol Submit Utama / LOGIN (Montserrat SemiBold - Weight 600) */}
+        {/* Tombol LOGIN */}
         <div className="pt-2">
           <button 
             type="submit"
@@ -143,7 +160,7 @@ const Login = () => {
           </button>
         </div>
 
-        {/* Forgot Password (Montserrat Medium - Weight 500) */}
+        {/* Forgot Password */}
         <div className="text-center pt-2">
           <Link 
             to="/forgot-password" 
@@ -154,10 +171,13 @@ const Login = () => {
         </div>
       </form>
 
-      {/* Info Akun Demo disesuaikan agar kontras di background biru */}
-      <p className="mt-12 text-[10px] text-white/50 text-center uppercase tracking-widest font-['Montserrat'] font-light">
-        Gunakan <span className="text-white font-medium underline decoration-white/40">emilys</span> & <span className="text-white font-medium underline decoration-white/40">emilyspass</span>
-      </p>
+      {/* Info Tambahan Registrasi */}
+      <div className="mt-8 text-center text-xs text-white/60 font-medium">
+        Belum punya akun admin?{' '}
+        <Link to="/register" className="text-white font-bold hover:underline">
+          Daftar di sini
+        </Link>
+      </div>
     </div>
   );
 };

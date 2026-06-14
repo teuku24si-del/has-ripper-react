@@ -12,7 +12,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // <-- Modul path alias untuk shadcn/ui tetap aman di sini
+      "@": path.resolve(__dirname, "./src"), 
     },
   },
 })

@@ -1,5 +1,6 @@
 // src/pages/Promotion.jsx
-import React, { useState } from "react";
+// 1. TAMBAHKAN useEffect DAN useRef PADA IMPORT REACT
+import React, { useState, useEffect, useRef } from "react";
 
 // ==========================================
 // IMPORT SEMUA 15 KOMPONEN DARI SUB-FOLDER PROMOTION
@@ -19,8 +20,6 @@ import ProgressBar from "../components/promotion/ProgressBar";
 import SearchBar from "../components/promotion/SearchBar";
 import FilterTab from "../components/promotion/FilterTab";
 import PromoModalForm from "../components/promotion/PromoModalForm";
-
-
 
 export default function Promotion() {
   // State untuk kontrol interaksi halaman
@@ -49,6 +48,28 @@ export default function Promotion() {
     { id: 6, name: "Muhammad Sumbul", count: "21 Kupon Diklaim" },
   ];
 
+  // ==========================================
+  // PENERAPAN useRef & useEffect
+  // ==========================================
+  
+  // A. Inisialisasi useRef untuk elemen input pencarian
+  const searchInputRef = useRef(null);
+
+  // B. useEffect ke-1: Membuat kolom pencarian otomatis fokus saat halaman dimuat
+  useEffect(() => {
+    // Memastikan elemen input pencarian ada di DOM, lalu memfokuskannya
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []); // Menggunakan array dependensi kosong agar hanya berjalan 1x saat mount
+
+  // C. useEffect ke-2: Mengubah Judul Tab Browser dinamis berdasarkan sisa jumlah promo
+  useEffect(() => {
+    const activePromosCount = promos.filter(p => p.statusText === "Aktif" || p.statusText === "Kuota Menipis").length;
+    document.title = `Wanderly | ${activePromosCount} Active Promotions`;
+  }, [promos]); // Berjalan setiap kali ada perubahan pada state 'promos' (misal: setelah dihapus)
+
+
   // Handler Fungsi Hapus Baris Promo
   const handleDeletePromo = (id) => {
     if (window.confirm("Apakah Anda yakin ingin menghapus promo ini?")) {
@@ -75,7 +96,7 @@ export default function Promotion() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <StatCardPromotion 
           title="Total Promo Aktif" 
-          value="3 Flash Sales" 
+          value={`${promos.filter(p => p.statusText !== "Kedaluwarsa").length} Flash Sales`} 
           trend="+12%" 
           trendColor="bg-emerald-50 text-emerald-700"
           icon={
@@ -148,7 +169,12 @@ export default function Promotion() {
 
       {/* Filter & Search Bar Panel */}
       <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+        {/* D. HUBUNGKAN inputRef KE DALAM KOMPONEN SEARCHBAR */}
+        <SearchBar 
+          value={searchQuery} 
+          onChange={setSearchQuery} 
+          inputRef={searchInputRef} 
+        />
         <FilterTab activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
@@ -198,8 +224,6 @@ export default function Promotion() {
 
       {/* Popup Modal Form */}
       <PromoModalForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-      
       
     </Container>
   );
