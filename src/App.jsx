@@ -24,9 +24,10 @@ const Trips = lazy(() => import('./components/Trips'));
 const TripsDetail = lazy(() => import('./components/TripsDetail'));
 const Promotion = lazy(() => import('./pages/Promotion'));
 
-// --- LAZY IMPORT KONTEN BARU USER & ACCOUNT SETTINGS ---
+// --- LAZY IMPORT KONTEN BARU USER, ACCOUNT SETTINGS & LANDING PAGE ---
 const AccountSettings = lazy(() => import('./pages/AccountSettings'));
-const UserPage = lazy(() => import('./pages/User')); // Menambahkan import untuk halaman User
+const UserPage = lazy(() => import('./pages/User')); 
+const LandingPage = lazy(() => import('./pages/LandingPage')); // PERBAIKAN: Impor halaman Landing Page
 
 // Komponen Loading Sementara (Fallback) saat halaman sedang diunduh browser
 const PageLoader = () => (
@@ -44,6 +45,10 @@ function App() {
       {/* Wajib membungkus Routes dengan Suspense dan memberikan properti fallback. */}
       <Suspense fallback={<PageLoader />}>
         <Routes>
+          
+          {/* ================= PUBLIC / LANDING PAGE ROUTE ================= */}
+          {/* PERBAIKAN: Menjadikan Landing Page sebagai tampilan awal saat web pertama kali dibuka */}
+          <Route path="/" element={<LandingPage />} />
           
           {/* ================= GUEST / AUTHENTICATION ROUTES ================= */}
           <Route element={<AuthLayouts />}>
@@ -83,8 +88,8 @@ function App() {
           </Route>
 
           {/* ==================== REDIRECTION FALLBACK ==================== */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          {/* PERBAIKAN: Mengarahkan rute tidak dikenal kembali ke Landing Page utama */}
+          <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>
       </Suspense>
