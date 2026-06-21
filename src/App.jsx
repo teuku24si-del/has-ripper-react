@@ -24,10 +24,17 @@ const Trips = lazy(() => import('./components/Trips'));
 const TripsDetail = lazy(() => import('./components/TripsDetail'));
 const Promotion = lazy(() => import('./pages/Promotion'));
 
-// --- LAZY IMPORT KONTEN BARU USER, ACCOUNT SETTINGS & LANDING PAGE ---
+// 4. Account Settings & User Management
 const AccountSettings = lazy(() => import('./pages/AccountSettings'));
 const UserPage = lazy(() => import('./pages/User')); 
-const LandingPage = lazy(() => import('./pages/LandingPage')); // PERBAIKAN: Impor halaman Landing Page
+
+// 5. PUBLIC / LANDING PAGES
+const LandingPage = lazy(() => import('./pages/LandingPage')); 
+// --- TAMBAHAN KONTEN HALAMAN LANDING PAGE BARU ---
+const About = lazy(() => import('./components/LandingPage/About'));
+const PromotionL = lazy(() => import('./components/LandingPage/PromotionL'));
+const Contact = lazy(() => import('./components/LandingPage/Contact'));
+
 
 // Komponen Loading Sementara (Fallback) saat halaman sedang diunduh browser
 const PageLoader = () => (
@@ -46,9 +53,14 @@ function App() {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           
-          {/* ================= PUBLIC / LANDING PAGE ROUTE ================= */}
-          {/* PERBAIKAN: Menjadikan Landing Page sebagai tampilan awal saat web pertama kali dibuka */}
+          {/* ================= PUBLIC / LANDING PAGE ROUTES ================= */}
+          {/* Halaman Utama Landing Page */}
           <Route path="/" element={<LandingPage />} />
+          
+          {/* --- TAMBAHAN RUTE HALAMAN LANDING PAGE BARU --- */}
+          <Route path="/about" element={<About />} />
+          <Route path="/promotion" element={<PromotionL />} />
+          <Route path="/contact" element={<Contact />} />
           
           {/* ================= GUEST / AUTHENTICATION ROUTES ================= */}
           <Route element={<AuthLayouts />}>
@@ -77,18 +89,18 @@ function App() {
             {/* Rute Detail Dinamis Per Trips Package */}
             <Route path="trips/:id" element={<TripsDetail />} />
 
-            {/* Rute Konten Baru Promotions */}
+            {/* Rute Konten Baru Promotions (Halaman Admin) */}
             <Route path="promotions" element={<Promotion />} />
 
-            {/* --- RUTE KONTEN BARU MANAGEMENT USER --- */}
+            {/* Rute Konten Baru Management User */}
             <Route path="user" element={<UserPage />} />
 
-            {/* --- RUTE KONTEN BARU ACCOUNT SETTINGS (SINKRON DENGAN SIDEBAR) --- */}
+            {/* Rute Konten Baru Account Settings (Sinkron dengan Sidebar) */}
             <Route path="account-settings" element={<AccountSettings />} />
           </Route>
 
           {/* ==================== REDIRECTION FALLBACK ==================== */}
-          {/* PERBAIKAN: Mengarahkan rute tidak dikenal kembali ke Landing Page utama */}
+          {/* Mengarahkan rute tidak dikenal kembali ke Landing Page utama */}
           <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>

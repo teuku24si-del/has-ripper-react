@@ -1,7 +1,7 @@
 // src/pages/Auth/Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // PERBAIKAN: Dialihkan ke library axios yang benar
+import axios from 'axios';
 import { BsFillExclamationDiamondFill } from "react-icons/bs"; 
 import { ImSpinner2 } from "react-icons/im"; 
 import { FiUser, FiLock } from "react-icons/fi"; 
