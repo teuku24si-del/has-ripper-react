@@ -11,10 +11,14 @@ import { Toaster } from "@/components/ui/sonner"; // Import provider Sonner untu
 const AuthLayouts = lazy(() => import('./layouts/AuthLayout'));
 const MainLayouts = lazy(() => import('./layouts/MainLayouts'));
 
-// 2. Guest / Auth Pages
+// 2. Guest / Auth Pages (Admin)
 const Login = lazy(() => import('./pages/Auth/Login'));
 const Register = lazy(() => import('./pages/Auth/Register'));
 const Forgot = lazy(() => import('./pages/Auth/Forgot'));
+
+// --- TAMBAHAN AUTH PAGES UNTUK MEMBER ---
+const LoginL = lazy(() => import('./pages/Auth/LoginL'));
+const RegisterL = lazy(() => import('./pages/Auth/RegisterL'));
 
 // 3. Admin Components / Pages
 const Overview = lazy(() => import('./components/Overview'));
@@ -30,10 +34,12 @@ const UserPage = lazy(() => import('./pages/User'));
 
 // 5. PUBLIC / LANDING PAGES
 const LandingPage = lazy(() => import('./pages/LandingPage')); 
-// --- TAMBAHAN KONTEN HALAMAN LANDING PAGE BARU ---
 const About = lazy(() => import('./components/LandingPage/About'));
 const PromotionL = lazy(() => import('./components/LandingPage/PromotionL'));
 const Contact = lazy(() => import('./components/LandingPage/Contact'));
+
+// --- TAMBAHAN HALAMAN MEMBER DASHBOARD ---
+const MemberDashboard = lazy(() => import('./pages/MemberDashboard'));
 
 
 // Komponen Loading Sementara (Fallback) saat halaman sedang diunduh browser
@@ -54,15 +60,19 @@ function App() {
         <Routes>
           
           {/* ================= PUBLIC / LANDING PAGE ROUTES ================= */}
-          {/* Halaman Utama Landing Page */}
           <Route path="/" element={<LandingPage />} />
-          
-          {/* --- TAMBAHAN RUTE HALAMAN LANDING PAGE BARU --- */}
           <Route path="/about" element={<About />} />
           <Route path="/promotion" element={<PromotionL />} />
           <Route path="/contact" element={<Contact />} />
           
-          {/* ================= GUEST / AUTHENTICATION ROUTES ================= */}
+          {/* ================= MEMBER ROUTES ================= */}
+          {/* Rute Autentikasi Member */}
+          <Route path="/login-member" element={<LoginL />} />
+          <Route path="/register-member" element={<RegisterL />} />
+          {/* Rute Dashboard Member */}
+          <Route path="/member" element={<MemberDashboard />} />
+
+          {/* ================= GUEST / AUTHENTICATION ROUTES (ADMIN) ================= */}
           <Route element={<AuthLayouts />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

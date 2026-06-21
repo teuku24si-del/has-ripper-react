@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoWanderly from '../../assets/logo-wanderly.png';
+// Import ikon user dan shield dari react-icons
+import { FiUser, FiShield } from 'react-icons/fi';
 
 const NavbarL = () => {
   // Gunakan useLocation untuk mendeteksi kita sedang di halaman mana
@@ -42,10 +44,25 @@ const NavbarL = () => {
           </Link>
         </nav>
         
-        <div className="flex items-center gap-4">
-          <Link to="/login" className="text-sm font-bold text-gray-700 hover:text-[#7F7CFF] transition-all">Log In</Link>
-          <Link to="/register" className="bg-[#7F7CFF] text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-md hover:bg-[#6b68e3] transition-all">Sign Up</Link>
+        {/* ACTION BUTTONS (MEMBER & ADMIN LOGIN) */}
+        <div className="flex items-center bg-white border border-gray-200 rounded-full p-1 shadow-sm">
+          {/* Tombol Login Member (Diarahkan ke rute login member) */}
+          <Link 
+            to="/login-member" 
+            className="flex items-center gap-2 bg-[#7F7CFF] text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm hover:bg-[#6b68e3]"
+          >
+            Member <FiUser size={16} />
+          </Link>
+
+          {/* Tombol Login Admin (Diarahkan ke rute login admin) */}
+          <Link 
+            to="/login" 
+            className="flex items-center gap-2 bg-transparent text-gray-800 px-5 py-2 rounded-full text-sm font-bold transition-all hover:bg-gray-100"
+          >
+            Admin <FiShield size={16} />
+          </Link>
         </div>
+        
       </div>
     </header>
   );
