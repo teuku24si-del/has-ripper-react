@@ -1,15 +1,20 @@
 // src/pages/MemberDashboard.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiUser, FiMap, FiHeart, FiSettings, FiLogOut, FiStar, FiCalendar, FiMapPin } from 'react-icons/fi';
-import NavbarL from '../components/LandingPage/NavbarL';
 import FooterL from '../components/LandingPage/FooterL';
 
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState('bookings');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login-member');
+  };
 
   return (
-    <div className="w-full bg-[#F8F9FD] text-gray-800 font-['Plus_Jakarta_Sans',sans-serif] min-h-screen pt-24">
-      <NavbarL />
+    <div className="w-full bg-[#F8F9FD] text-gray-800 font-['Plus_Jakarta_Sans',sans-serif] min-h-screen pt-12">
       
       <div className="max-w-7xl mx-auto px-6 pb-20 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
@@ -30,6 +35,12 @@ const MemberDashboard = () => {
 
             {/* Navigation Menu */}
             <nav className="flex flex-col gap-2">
+              <button 
+                onClick={() => navigate('/')}
+                className="flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all text-gray-500 hover:bg-gray-50 hover:text-[#7F7CFF] mb-2 border border-gray-100"
+              >
+                <FiMapPin size={18} /> Back to Landing Page
+              </button>
               <button 
                 onClick={() => setActiveTab('profile')}
                 className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === 'profile' ? 'bg-[#7F7CFF] text-white shadow-md' : 'text-gray-500 hover:bg-gray-50 hover:text-[#7F7CFF]'}`}
@@ -54,7 +65,10 @@ const MemberDashboard = () => {
               >
                 <FiSettings size={18} /> Settings
               </button>
-              <button className="flex items-center gap-3 w-full text-left px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl text-sm font-bold transition-all mt-4 border border-transparent hover:border-red-100">
+              <button 
+                onClick={handleLogout}
+                className="flex items-center gap-3 w-full text-left px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl text-sm font-bold transition-all mt-4 border border-transparent hover:border-red-100"
+              >
                 <FiLogOut size={18} /> Log Out
               </button>
             </nav>

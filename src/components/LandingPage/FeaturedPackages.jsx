@@ -7,12 +7,24 @@ import { Card } from '../antigravity/Card';
 import { Typography } from '../antigravity/Typography';
 import { Badge } from '../antigravity/Badge';
 import { Button } from '../antigravity/Button';
+import { Notification } from '../antigravity/Notification';
+import { useNavigate } from 'react-router-dom';
 
 const FeaturedPackages = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
+  const navigate = useNavigate();
 
   const toggleDropdown = (id) => {
     setOpenDropdown(openDropdown === id ? null : id);
+  };
+
+  const handleBookNow = () => {
+    const token = localStorage.getItem('token');
+    if (token && token.startsWith('session_member_')) {
+      Notification.success('Melanjutkan ke halaman pemesanan...');
+    } else {
+      navigate('/login-member');
+    }
   };
 
   // Ambil 3 paket pertama sebagai featured
@@ -117,7 +129,7 @@ const FeaturedPackages = () => {
               </div>
               
               {/* Tombol Book Now */}
-              <Button variant="primary" className="w-full mt-6 justify-center">
+              <Button onClick={handleBookNow} variant="primary" className="w-full mt-6 justify-center">
                 Book Now
               </Button>
             </Card>

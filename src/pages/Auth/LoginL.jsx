@@ -1,5 +1,5 @@
 // src/pages/Auth/LoginL.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BsFillExclamationDiamondFill } from "react-icons/bs"; 
@@ -10,6 +10,14 @@ import logoWanderly from '../../assets/logo-wanderly.png';
 const LoginL = () => {
   const navigate = useNavigate();
   
+  // Periksa jika sudah login
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token && token.startsWith('session_member_')) {
+      navigate('/member');
+    }
+  }, [navigate]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 

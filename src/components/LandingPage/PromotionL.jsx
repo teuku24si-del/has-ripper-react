@@ -4,13 +4,27 @@ import NavbarL from './NavbarL';
 import FooterL from './FooterL';
 import { FiTag, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
+import { useNavigate } from 'react-router-dom';
+
+import { Notification } from '../antigravity/Notification';
+
 const PromotionL = () => {
   // State untuk melacak ID promo mana yang dropdown-nya sedang terbuka
   const [openDropdown, setOpenDropdown] = useState(null);
+  const navigate = useNavigate();
 
   // Fungsi untuk toggle dropdown
   const toggleDropdown = (id) => {
     setOpenDropdown(openDropdown === id ? null : id);
+  };
+
+  const handleClaim = () => {
+    const token = localStorage.getItem('token');
+    if (token && token.startsWith('session_member_')) {
+      Notification.success('Promo berhasil diklaim!');
+    } else {
+      navigate('/login-member');
+    }
   };
 
   // Data Array yang sudah ditambahkan deskripsi dan itinerary
@@ -156,7 +170,7 @@ const PromotionL = () => {
                 </div>
               </div>
               
-              <button className="w-full mt-6 py-3 bg-[#7F7CFF] text-white rounded-xl text-xs font-bold shadow-md hover:bg-[#6b68e3] active:scale-[0.98] transition-all">Claim Offer</button>
+              <button onClick={handleClaim} className="w-full mt-6 py-3 bg-[#7F7CFF] text-white rounded-xl text-xs font-bold shadow-md hover:bg-[#6b68e3] active:scale-[0.98] transition-all">Claim Offer</button>
             </div>
           ))}
         </div>

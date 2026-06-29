@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FiMapPin, FiCalendar, FiUsers, FiSearch } from 'react-icons/fi';
 import { Input } from '../antigravity/Input';
 import { Button } from '../antigravity/Button';
+import { Notification } from '../antigravity/Notification';
 
 const HotelSection = () => {
   const [formData, setFormData] = useState({
@@ -25,8 +26,12 @@ const HotelSection = () => {
       setErrors(newErrors);
     } else {
       setErrors({});
-      // Proceed with search logic if needed
-      console.log('Searching hotels:', formData);
+      const token = localStorage.getItem('token');
+      if (token && token.startsWith('session_member_')) {
+        Notification.success('Mencari hotel terbaik untuk Anda...');
+      } else {
+        Notification.error('Silakan login atau daftar akun untuk melanjutkan proses pemesanan dan mendapatkan harga terbaik.');
+      }
     }
   };
 

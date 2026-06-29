@@ -4,7 +4,22 @@ import tripsData from '../../data/Trips.json';
 import { Card } from '../antigravity/Card';
 import { Typography } from '../antigravity/Typography';
 
+import { useNavigate } from 'react-router-dom';
+
+import { Notification } from '../antigravity/Notification';
+
 const TrendingDestinations = () => {
+  const navigate = useNavigate();
+
+  const handleExplore = () => {
+    const token = localStorage.getItem('token');
+    if (token && token.startsWith('session_member_')) {
+      Notification.success('Membuka detail destinasi...');
+    } else {
+      navigate('/login-member');
+    }
+  };
+
   // Ambil 3 destinasi pertama sebagai contoh trending
   const trending = tripsData.slice(0, 3);
   
@@ -27,7 +42,7 @@ const TrendingDestinations = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {trending.map((trip, idx) => (
-          <Card key={trip.tripId} className="hover:shadow-md transition-all group cursor-pointer border-none shadow-sm rounded-2xl">
+          <Card onClick={handleExplore} key={trip.tripId} className="hover:shadow-md transition-all group cursor-pointer border-none shadow-sm rounded-2xl">
             <div className="h-64 relative overflow-hidden rounded-t-2xl">
               <img 
                 src={images[idx]} 

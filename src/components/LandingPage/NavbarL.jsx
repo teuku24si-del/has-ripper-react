@@ -55,9 +55,23 @@ const NavbarL = () => {
         
         {/* ACTION BUTTONS (MEMBER & ADMIN LOGIN) */}
         <div className="flex items-center bg-white border border-gray-200 rounded-full p-1 shadow-sm">
-          <Button to="/login-member" variant="primary">
-            Member <FiUser size={16} />
-          </Button>
+          {(() => {
+            const token = localStorage.getItem('token');
+            const isLoggedIn = token && token.startsWith('session_member_');
+
+            if (isLoggedIn) {
+              return (
+                <Button to="/member" variant="primary">
+                  Dashboard <FiUser size={16} />
+                </Button>
+              );
+            }
+            return (
+              <Button to="/login-member" variant="primary">
+                Member <FiUser size={16} />
+              </Button>
+            );
+          })()}
 
           <Button to="/login" variant="ghost">
             Admin <FiShield size={16} />
