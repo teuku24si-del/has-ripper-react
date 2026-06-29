@@ -1,19 +1,18 @@
 // src/components/LandingPage/NavbarL.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoWanderly from '../../assets/logo-wanderly.png';
-// Import ikon user dan shield dari react-icons
 import { FiUser, FiShield } from 'react-icons/fi';
+import { Navbar } from '../antigravity/Navbar';
+import { Typography } from '../antigravity/Typography';
+import { Button } from '../antigravity/Button';
 
 const NavbarL = () => {
-  // Gunakan useLocation untuk mendeteksi kita sedang di halaman mana
   const location = useLocation();
   const currentPath = location.pathname;
 
   return (
-    <header className="w-full bg-white/80 backdrop-blur-md fixed top-0 left-0 z-50 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-        
+    <Navbar>
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
@@ -22,49 +21,49 @@ const NavbarL = () => {
         </div>
         
         {/* NAV LINK DINAMIS */}
-        <nav className="hidden md:flex items-center gap-8 text-base font-bold uppercase tracking-wider text-gray-600">
-          <a href="/#destinations" className={`pb-1 transition-all duration-300 hover:text-[#7F7CFF] border-b-2 ${currentPath === '/' ? 'border-transparent' : 'border-transparent'}`}>
-            Destinations
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="/#destinations">
+            <Typography variant="navLink" className={currentPath === '/' ? 'border-transparent' : 'border-transparent'}>
+              Destinations
+            </Typography>
           </a>
           
-          <a href="/#packages" className={`pb-1 transition-all duration-300 hover:text-[#7F7CFF] border-b-2 border-transparent`}>
-            Packages
+          <a href="/#packages">
+            <Typography variant="navLink" className="border-transparent">
+              Packages
+            </Typography>
           </a>
 
-          <Link to="/about" className={`pb-1 transition-all duration-300 ${currentPath === '/about' ? 'text-[#7F7CFF] border-b-2 border-[#7F7CFF]' : 'hover:text-[#7F7CFF] border-b-2 border-transparent'}`}>
-            About
+          <Link to="/about">
+            <Typography variant="navLink" className={currentPath === '/about' ? 'text-[#7F7CFF] border-[#7F7CFF]' : 'border-transparent'}>
+              About
+            </Typography>
           </Link>
 
-          <Link to="/promotion" className={`pb-1 transition-all duration-300 ${currentPath === '/promotion' ? 'text-[#7F7CFF] border-b-2 border-[#7F7CFF]' : 'hover:text-[#7F7CFF] border-b-2 border-transparent'}`}>
-            Promotion
+          <Link to="/promotion">
+            <Typography variant="navLink" className={currentPath === '/promotion' ? 'text-[#7F7CFF] border-[#7F7CFF]' : 'border-transparent'}>
+              Promotion
+            </Typography>
           </Link>
 
-          <Link to="/contact" className={`pb-1 transition-all duration-300 ${currentPath === '/contact' ? 'text-[#7F7CFF] border-b-2 border-[#7F7CFF]' : 'hover:text-[#7F7CFF] border-b-2 border-transparent'}`}>
-            Contact
+          <Link to="/contact">
+            <Typography variant="navLink" className={currentPath === '/contact' ? 'text-[#7F7CFF] border-[#7F7CFF]' : 'border-transparent'}>
+              Contact
+            </Typography>
           </Link>
         </nav>
         
         {/* ACTION BUTTONS (MEMBER & ADMIN LOGIN) */}
         <div className="flex items-center bg-white border border-gray-200 rounded-full p-1 shadow-sm">
-          {/* Tombol Login Member (Diarahkan ke rute login member) */}
-          <Link 
-            to="/login-member" 
-            className="flex items-center gap-2 bg-[#7F7CFF] text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-sm hover:bg-[#6b68e3]"
-          >
+          <Button to="/login-member" variant="primary">
             Member <FiUser size={16} />
-          </Link>
+          </Button>
 
-          {/* Tombol Login Admin (Diarahkan ke rute login admin) */}
-          <Link 
-            to="/login" 
-            className="flex items-center gap-2 bg-transparent text-gray-800 px-5 py-2 rounded-full text-sm font-bold transition-all hover:bg-gray-100"
-          >
+          <Button to="/login" variant="ghost">
             Admin <FiShield size={16} />
-          </Link>
+          </Button>
         </div>
-        
-      </div>
-    </header>
+    </Navbar>
   );
 };
 
